@@ -21,11 +21,16 @@ document.querySelector('.bt-play').addEventListener('click', function(){
 });
 
 document.querySelector('.bt-next').addEventListener('click', function(){
+    document.getElementById('id-card').className = 'card blue-grey darken-1';
     sortearPergunta();
 });
 
 document.querySelector('.bt-cancel').addEventListener('click', function(){
     window.location.reload(true); 
+});
+
+document.querySelector('.bt-select').addEventListener('click', function(){
+  document.getElementById('id-card').className = 'card green darken-4';
 });
 
 
@@ -72,6 +77,20 @@ function selecionarCategoria() {
 }
 
 function selecionarDificuldade() {
+  if(document.getElementById('id-easy').checked){
+    dificuldade = 'easy';
+  }
+  if(document.getElementById('id-medium').checked){
+    dificuldade = 'medium';
+  }
+  if(document.getElementById('id-hard').checked){
+    dificuldade = 'hard';
+  }
+
+  console.log(dificuldade);
+}
+
+function verificarResposta() {
   if(document.getElementById('id-easy').checked){
     dificuldade = 'easy';
   }
