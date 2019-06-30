@@ -1,3 +1,13 @@
+let perguntas = 0;
+let categoria = 0;
+let dificuldade = '';
+
+const categoriaDOM = document.querySelector('.categoria');
+const perguntaDOM = document.querySelector('.pergunta');
+const resposta1DOM = document.querySelector('.resposta1');
+const resposta2DOM = document.querySelector('.resposta2');
+const resposta3DOM = document.querySelector('.resposta3');
+const resposta4DOM = document.querySelector('.resposta4');
 
 document.getElementById('principal').style.display = '';
 document.getElementById('jogo').style.display = 'none';
@@ -5,29 +15,28 @@ document.getElementById('jogo').style.display = 'none';
 document.querySelector('.bt-play').addEventListener('click', function(){
     document.getElementById('principal').style.display = 'none';
     document.getElementById('jogo').style.display = '';
+    selecionarCategoria();
+    selecionarDificuldade();
     carregarPerguntas();
 });
 
-function carregarPerguntas(){
-    const categoria = document.querySelector('.categoria');
-    const pergunta = document.querySelector('.pergunta');
-    const resposta1 = document.querySelector('.resposta1');
-    const resposta2 = document.querySelector('.resposta2');
-    const resposta3 = document.querySelector('.resposta3');
-    const resposta4 = document.querySelector('.resposta4');
+document.querySelector('.bt-next').addEventListener('click', function(){
+    sortearPergunta();
+});
 
+document.querySelector('.bt-cancel').addEventListener('click', function(){
+    window.location.reload(true); 
+});
+
+
+function carregarPerguntas() {
+    
     const proxy = 'https://cors-anywhere.herokuapp.com/';
-    axios.get(`${proxy}https://opentdb.com/api.php?amount=10&category=21&difficulty=hard`)
+    axios.get(`${proxy}https://opentdb.com/api.php?amount=10&category=${categoria}&difficulty=${dificuldade}`)
     .then(function(json) {
-    let perguntas = json.data.results;
-    const n = Math.floor((Math.random() * 10) + 1);
-       console.log(json.data.results);
-       categoria.textContent = json.data.results[n].category;
-       pergunta.textContent = json.data.results[n].question;
-       resposta1.textContent = json.data.results[n].correct_answer;
-       resposta2.textContent = json.data.results[n].incorrect_answers[0];
-       resposta3.textContent = json.data.results[n].incorrect_answers[1];
-       resposta4.textContent = json.data.results[n].incorrect_answers[2];
+    perguntas = json.data;
+    
+       sortearPergunta();
     })
     .catch(function(erro) {
       console.log(erro);
@@ -35,6 +44,43 @@ function carregarPerguntas(){
     });
 };
 
-function sortearPergunta(){
+function sortearPergunta() {
+  console.log(perguntas.results);
+  const n = Math.floor((Math.random() * 10) + 1);
+  categoriaDOM.textContent = perguntas.results[n].category;
+  perguntaDOM.textContent = perguntas.results[n].question;
+  resposta1DOM.textContent = perguntas.results[n].correct_answer;
+  resposta2DOM.textContent = perguntas.results[n].incorrect_answers[0];
+  resposta3DOM.textContent = perguntas.results[n].incorrect_answers[1];
+  resposta4DOM.textContent = perguntas.results[n].incorrect_answers[2];
+}
 
+function selecionarCategoria() {
+  // const filtro = document.getElementById('id_filtro').value;
+
+  if(document.getElementById('id-music').checked){
+    categoria = 12;
+  }
+  if(document.getElementById('id-games').checked){
+    categoria = 15;
+  }
+  if(document.getElementById('id-sports').checked){
+    categoria = 21;
+  }
+
+  console.log(categoria);
+}
+
+function selecionarDificuldade() {
+  if(document.getElementById('id-easy').checked){
+    dificuldade = 'easy';
+  }
+  if(document.getElementById('id-medium').checked){
+    dificuldade = 'medium';
+  }
+  if(document.getElementById('id-hard').checked){
+    dificuldade = 'hard';
+  }
+
+  console.log(dificuldade);
 }

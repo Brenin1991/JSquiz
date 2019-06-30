@@ -1,45 +1,40 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    
-     <!--Import Google Icon Font-->
-     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-
-      
-</head>
-<body>
-    <body>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>JSquiz</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel='stylesheet' type='text/css' media='screen' href='css/style.css'>
         
+         <!--Import Google Icon Font-->
+         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/> 
+    </head>
+    <body>
         <div id="principal" class="container">
            <div class="row">
                 <div class="col s12 m6 l1">
                     <div class="row">
-                        <h5>Dificult</h5>
+                        <h5>Difficult</h5>
                     </div> 
                     <div class="row">
-                        <form action="#">
+                        <form class="difficult" action="#">
                             <p>
                                 <label>
-                                    <input name="group1" type="radio" checked />
+                                    <input name="dificuldade" id="id-easy" type="radio" checked value="easy" />
                                     <span>Easy</span>
                                 </label>
                             </p>
                             <p>
                                 <label>
-                                    <input name="group1" type="radio" checked />
+                                    <input name="dificuldade" id="id-medium" type="radio" checked value="medium"/>
                                     <span>Medium</span>
                                 </label>
                             </p>
                             <p>
                                 <label>
-                                    <input name="group1" type="radio" checked />
+                                    <input name="dificuldade" id="id-hard" type="radio" checked value="hard" />
                                     <span>Hard</span>
                                     </label>
                             </p>
@@ -47,14 +42,29 @@
                     </div>    
                     <div class="row">
                         <h5>Category</h5>
-                        <!-- O segundo valor estará selecionado inicialmente -->
-                        <select name="select">
-                                <option value="valor1">Valor 1</option> 
-                                <option value="valor2" selected>Valor 2</option>
-                                <option value="valor3">Valor 3</option>
-                            </select>
-                            <label>Materialize Select</label>
                     </div>   
+                    <div class="row">
+                        <form action="#">
+                            <p>
+                                <label>
+                                    <input name="categoria" id="id-music" type="radio" checked value="12" />
+                                    <span>Music</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input name="categoria" id="id-games" type="radio" checked value="15"/>
+                                    <span>Video Games</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input name="categoria" id="id-sports" type="radio" checked value="21"/>
+                                    <span>Sports</span>
+                                    </label>
+                            </p>
+                        </form>   
+                    </div>    
                 </div>
                <div class="col s12 m6 l11 center-align">
                     <div class="row">
@@ -89,8 +99,8 @@
                                         <p class="pergunta"></p>
                                 </div>
                                 <div class="card-action">
-                                    <a href="#">Reply later (1) </a>
-                                    <a href="#">Next question</a>
+                                    <a class="bt-depois" href="#">Reply later (1) </a>
+                                    <a class="bt-next" href="#">Next question</a>
                                 </div>
                             </div>
                         </div>
@@ -125,10 +135,11 @@
                         </label>
                     </p>
                 </form>  
-                <a class="waves-effect waves-light btn">Cancel</a>
-                <a class="waves-effect waves-light btn">Select</a>
+                <a class="waves-effect waves-light btn bt-cancel">Cancel</a>
+                <a class="waves-effect waves-light btn bt-select">Select</a>
             </div>    
         </div>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src='script.js'></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
