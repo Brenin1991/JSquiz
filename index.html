@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    
+     <!--Import Google Icon Font-->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      
+</head>
+<body>
+    <body>
+        
+        <div id="principal" class="container">
+           <div class="row">
+                <div class="col s12 m6 l1">
+                    <div class="row">
+                        <h5>Dificult</h5>
+                    </div> 
+                    <div class="row">
+                        <form action="#">
+                            <p>
+                                <label>
+                                    <input name="group1" type="radio" checked />
+                                    <span>Easy</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input name="group1" type="radio" checked />
+                                    <span>Medium</span>
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    <input name="group1" type="radio" checked />
+                                    <span>Hard</span>
+                                    </label>
+                            </p>
+                        </form>   
+                    </div>    
+                    <div class="row">
+                        <h5>Category</h5>
+                        <!-- O segundo valor estará selecionado inicialmente -->
+                        <select name="select">
+                                <option value="valor1">Valor 1</option> 
+                                <option value="valor2" selected>Valor 2</option>
+                                <option value="valor3">Valor 3</option>
+                            </select>
+                            <label>Materialize Select</label>
+                    </div>   
+                </div>
+               <div class="col s12 m6 l11 center-align">
+                    <div class="row">
+                        <h1>Play</h1>
+                    </div> 
+                    
+                    <div class="row">
+                        <a class="waves-effect waves-light btn bt-play">Play</a>
+                    </div>
+                    <div class="row">
+                        <a class="waves-effect waves-light btn">Score</a>
+                    </div>
+                    <div class="row">
+                        <a class="waves-effect waves-light btn">Options</a>
+                    </div>
+
+                    <div class="row">
+                        <a class="waves-effect waves-light btn">About</a>
+                    </div>                
+               </div>
+           </div>
+        </div>
+
+        <div id="jogo" class="container">
+            <div class="col s12 m12 l1">
+                <div class="row">
+                    <div class="col s12 m12 l12 center-align">
+                        <div class="row">
+                            <div class="card blue-grey darken-1">
+                                <div class="card-content white-text">
+                                    <span class="card-title categoria"></span>
+                                        <p class="pergunta"></p>
+                                </div>
+                                <div class="card-action">
+                                    <a href="#">Reply later (1) </a>
+                                    <a href="#">Next question</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m12 l12">
+                <h5>Answer</h5>
+                <form action="#">
+                    <p>
+                        <label>
+                            <input name="group1" type="radio" checked />
+                            <span class="resposta1"></span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input name="group1" type="radio" checked />
+                            <span class="resposta2"></span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input name="group1" type="radio" checked />
+                            <span class="resposta3"></span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input name="group1" type="radio" checked />
+                            <span class="resposta4"></span>
+                        </label>
+                    </p>
+                </form>  
+                <a class="waves-effect waves-light btn">Cancel</a>
+                <a class="waves-effect waves-light btn">Select</a>
+            </div>    
+        </div>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src='script.js'></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+        
+</body>
+</html>
+
+        
