@@ -1,13 +1,16 @@
-let perguntas = 0;
-let categoria = 0;
 let pontos = 0;
-let pontosDificuldade = 0;
 let dificuldade = '';
+let categoria = 0;
+let respondidas = 0;
+let erros = 0;
+
+let perguntas = 0;
+
+let pontosDificuldade = 0;
 let correta = '';
 
 const categoriaDOM = document.querySelector('.categoria');
 const perguntaDOM = document.querySelector('.pergunta');
-
 const pontosDOM = document.querySelector('.pontos');
 
 const resposta1DOM = document.querySelector('.resposta1');
@@ -21,6 +24,8 @@ const r4DOM = document.getElementById('id-resposta4');
 
 document.getElementById('principal').style.display = '';
 document.getElementById('jogo').style.display = 'none';
+document.getElementById('final').style.display = 'none';
+document.querySelector('.bt-next').style.display = 'none';
 
 document.querySelector('.bt-play').addEventListener('click', function(){
     document.getElementById('principal').style.display = 'none';
@@ -32,11 +37,9 @@ document.querySelector('.bt-play').addEventListener('click', function(){
 
 document.querySelector('.bt-next').addEventListener('click', function(){
     document.getElementById('id-card').className = 'card blue-grey darken-1';
+    document.querySelector('.bt-next').style.display = 'none';
+    document.querySelector('.bt-select').style.display = '';
     sortearPergunta();
-    if(pontos <= 0){
-       perguntaDOM.textContent = "Game Over"
-    }
-    pontosDOM.textContent = "Pontos: "+ pontos;
 });
 
 document.querySelector('.bt-cancel').addEventListener('click', function(){
@@ -44,7 +47,10 @@ document.querySelector('.bt-cancel').addEventListener('click', function(){
 });
 
 document.querySelector('.bt-select').addEventListener('click', function(){
+  document.querySelector('.bt-next').style.display = '';
+  document.querySelector('.bt-select').style.display = 'none';
   verificarResposta();
+  verificarErros();
 });
 
 
@@ -82,8 +88,6 @@ function sortearPergunta() {
 }
 
 function selecionarCategoria() {
-  // const filtro = document.getElementById('id_filtro').value;
-
   if(document.getElementById('id-music').checked){
     categoria = 12;
   }
@@ -93,7 +97,6 @@ function selecionarCategoria() {
   if(document.getElementById('id-sports').checked){
     categoria = 21;
   }
-
   console.log(categoria);
 }
 
@@ -110,11 +113,27 @@ function selecionarDificuldade() {
     dificuldade = 'hard';
     pontosDificuldade = 10;
   }
-
   console.log(dificuldade);
 }
 
+function atualizarScore() {
+  pontosDOM.textContent = "Score: "+ pontos;
+}
+
+function verificarErros() {
+  if(erros >= 3){
+    document.getElementById('jogo').style.display = 'none';
+    document.getElementById('final').style.display = '';
+    verTabela();
+    document.querySelector('.bt-reload').addEventListener('click', function(){
+      window.location.reload(true); 
+    });
+  }
+}
+
 function verificarResposta() {
+  respondidas += 1;
+  console.log(respondidas);
   if(document.getElementById('id-resposta1').checked){
     if(document.getElementById('id-resposta1').value == correta){
       console.log('Acertou!!!');
@@ -123,6 +142,7 @@ function verificarResposta() {
     }
     else{
       console.log('Errou!!!');
+      erros += 1;
       pontos = pontos - pontosDificuldade;
       document.getElementById('id-card').className = 'card red darken-4';
     }
@@ -135,6 +155,7 @@ function verificarResposta() {
     }
     else{
       console.log('Errou!!!');
+      erros += 1;
       pontos = pontos - pontosDificuldade;
       document.getElementById('id-card').className = 'card red darken-4';
     }
@@ -147,6 +168,7 @@ function verificarResposta() {
     }
     else{
       console.log('Errou!!!');
+      erros += 1;
       pontos = pontos - pontosDificuldade;
       document.getElementById('id-card').className = 'card red darken-4';
     }
@@ -159,9 +181,34 @@ function verificarResposta() {
     }
     else{
       console.log('Errou!!!');
+      erros += 1;
       pontos = pontos - pontosDificuldade;
       document.getElementById('id-card').className = 'card red darken-4';
     }
   }
   console.log(dificuldade);
+  atualizarScore();
+}
+
+function verTabela(){
+    var table = document.getElementById('id_table');
+
+    //for (const celula of lista) {
+        const tr = table.insertRow(-1);
+        let td = tr.insertCell(0);
+        let texto = document.createTextNode(pontos);
+        td.appendChild(texto);
+    
+        td = tr.insertCell(1);
+        texto = document.createTextNode(respondidas);
+        td.appendChild(texto);
+    
+        td = tr.insertCell(2);
+        texto = document.createTextNode(dificuldade);
+        td.appendChild(texto);
+    
+        td = tr.insertCell(3);
+        texto = document.createTextNode(categoria);
+        td.appendChild(texto);
+//
 }
